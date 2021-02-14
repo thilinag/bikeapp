@@ -6,7 +6,7 @@ export const useSpeedometer = () => {
 
     const success = (position) => {
         if(position.coords.speed) {
-            setSpeed(position.coords.speed)
+            setSpeed(parseInt(position.coords.speed * 3.6 ))
         }
     }
 

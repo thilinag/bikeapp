@@ -5,7 +5,9 @@ export const useSpeedometer = () => {
     const [speed, setSpeed] = useState(0);
 
     const success = (position) => {
-        setSpeed(position.coords.speed)
+        if(position.coords.speed) {
+            setSpeed(position.coords.speed)
+        }
     }
 
     useEffect(() => {

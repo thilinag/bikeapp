@@ -1,10 +1,14 @@
-import './App.css';
-import Speedometer from './components/Speedometer/Speedometer';
+import Speedometer from './components/Speedometer';
+import Clock from './components/Clock';
+import classes from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <div className="SpeedometerWrapper">
+    <div className={classes.App}>
+      <div className={classes.ClockWrapper}>
+        <Clock />
+      </div>
+      <div className={classes.SpeedometerWrapper}>
         <Speedometer />
       </div>
     </div>

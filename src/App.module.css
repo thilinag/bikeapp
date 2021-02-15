@@ -1,0 +1,21 @@
+.App {
+    display: grid;
+    grid-auto-rows: auto 1fr;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+
+.ClockWrapper {
+    text-align: center;
+    font-size: 12vw;
+    padding: 4vw;
+}
+
+.SpeedometerWrapper {
+    font-size: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

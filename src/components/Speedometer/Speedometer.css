@@ -1,0 +1,17 @@
+.Speedometer {
+    position: relative;
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}
+
+.Speedometer:first-letter {
+    font-size: 30vw;
+}
+
+.Speedometer::before {
+    content: 'KM/H';
+    position: absolute;
+    top: 3vw;
+    right: -3vw;
+    font-size: 5vw;
+}

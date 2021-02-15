@@ -1,12 +1,16 @@
-import { useSpeedometer } from "./hooks/useSpeedometer";
+import { useSpeedometer } from './hooks/useSpeedometer';
+import './Speedometer.css';
 
 const Speedometer = () => {
     const {
+        hasErrors,
         speed
     } = useSpeedometer();
 
     return (
-        <div>{speed}</div>
+        <div className="Speedometer">
+            {hasErrors ? '-' : speed.split('').reverse().join('')}
+        </div>
     )
 }
 

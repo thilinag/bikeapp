@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useClock = () => {
-    const locale = 'en';
+    const locale = 'en-AU';
     const [currentDate, setCurrentDate] = useState(new Date()); // Save the current date to be able to trigger an update
 
     useEffect(() => {
@@ -16,6 +16,6 @@ export const useClock = () => {
 
 
     return {
-        currentTime: currentDate.toLocaleTimeString('en-AU', { hour: 'numeric', minute: 'numeric' })
+        currentTime: currentDate.toLocaleTimeString(locale, { hour: 'numeric', minute: 'numeric' })
     }
 }

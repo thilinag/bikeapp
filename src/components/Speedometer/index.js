@@ -1,1 +1,1 @@
-export { default as Speedometer } from './Speedometer';
+export { default } from './Speedometer';

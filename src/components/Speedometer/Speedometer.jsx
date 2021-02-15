@@ -1,5 +1,5 @@
 import { useSpeedometer } from './hooks/useSpeedometer';
-import './Speedometer.css';
+import classes from './Speedometer.module.css';
 
 const Speedometer = () => {
     const {
@@ -8,7 +8,7 @@ const Speedometer = () => {
     } = useSpeedometer();
 
     return (
-        <div className="Speedometer">
+        <div className={classes.Speedometer}>
             {hasErrors ? '-' : speed.split('').reverse().join('')}
         </div>
     )

@@ -1,3 +1,4 @@
 .Clock {
-  
+    text-align: center;
+    grid-area: clock;
 }

@@ -13,8 +13,6 @@ export const useClock = () => {
         }
     }, []);
 
-
-
     return {
         currentTime: currentDate.toLocaleTimeString(locale, { hour: 'numeric', minute: 'numeric' })
     }

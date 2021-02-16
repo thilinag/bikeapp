@@ -6,7 +6,7 @@ export const useSpeedometer = () => {
     const [hasErrors, setHasErrors] = useState(false);
     const [maxSpeed, setMaxSpeed] = useState(0);
 
-    const success = useCallback(() => position => {
+    const success = position => {
         const currentSpeed = position.coords.speed;
 
         if (currentSpeed) {
@@ -17,7 +17,7 @@ export const useSpeedometer = () => {
             }
             setHasErrors(false);
         }
-    }, [maxSpeed]);
+    };
 
     useEffect(() => {
         navigator.geolocation.watchPosition(

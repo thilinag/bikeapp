@@ -15,12 +15,10 @@ const Speedometer = () => {
                     {hasErrors ? '-' : speed.split('').reverse().join('')}
                 </div>
             </div>
-            {maxSpeed > 0 && (
-                <div className={classes.MaxSpeed}>
-                    <div className={classes.MaxSpeedLabel}>Max</div>
-                    <div>{maxSpeed}<small className={classes.MaxSpeedLabel}>KM/H</small></div>
-                </div>
-            )}
+            <div className={classes.MaxSpeed}>
+                <div className={classes.MaxSpeedLabel}>Max</div>
+                <div>{maxSpeed}<small className={classes.MaxSpeedLabel}>KM/H</small></div>
+            </div>
         </>
     )
 }

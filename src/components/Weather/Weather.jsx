@@ -11,7 +11,7 @@ const Weather = () => {
         <div className={classes.Weather}>
             <div className={classes.Condition}>{condition}</div>
             {temp && (
-                <div className={classes.Temp}>{`${temp}'C`}</div>
+                <div className={classes.Temp}>{`${parseInt(temp)}'C`}</div>
             )}
         </div>
     )

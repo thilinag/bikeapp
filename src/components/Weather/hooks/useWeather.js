@@ -4,9 +4,7 @@ export const useWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     const getWeatherData = () => {
-        fetch(
-            'https://wttr.in/Adelaide?format=j1'
-        )
+        fetch('https://api.openweathermap.org/data/2.5/weather?id=2078025&appid=79379dd3d5b45e86b5877a0228391bfd&units=metric', )
         .then(response => response.json())
         .then(jsonResponse => {
             setWeatherData(jsonResponse);
@@ -18,8 +16,7 @@ export const useWeather = () => {
     }, [])
 
     return {
-        condition: weatherData?.current_condition[0].weatherDesc[0].value,
-        temp: weatherData?.current_condition[0].FeelsLikeC,
-        rain: weatherData?.current_condition[0].precipMM,
+        condition: weatherData?.weather[0].description,
+        temp: weatherData?.main.feels_like
     }
 }

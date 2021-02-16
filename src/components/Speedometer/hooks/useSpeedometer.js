@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useSpeedometer = () => {
 
@@ -6,7 +6,7 @@ export const useSpeedometer = () => {
     const [hasErrors, setHasErrors] = useState(false);
     const [maxSpeed, setMaxSpeed] = useState(0);
 
-    const success = (position) => {
+    const success = useCallback(() => position => {
         const currentSpeed = position.coords.speed;
 
         if (currentSpeed) {
@@ -17,7 +17,7 @@ export const useSpeedometer = () => {
             }
             setHasErrors(false);
         }
-    }
+    }, [maxSpeed]);
 
     useEffect(() => {
         navigator.geolocation.watchPosition(
@@ -31,7 +31,7 @@ export const useSpeedometer = () => {
             maximumAge: 1000,
             distanceFilter: 1
         })
-    }, []);
+    }, [success]);
 
     return {
         hasErrors,

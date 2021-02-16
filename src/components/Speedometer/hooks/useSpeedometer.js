@@ -15,7 +15,7 @@ export const useSpeedometer = () => {
                     // speed is in meters per second
                     setSpeed((currentSpeed / 1000 * 60 * 60).toFixed(1));
                     if (maxSpeed < currentSpeed) {
-                        setMaxSpeed(parseInt(currentSpeed / 1000 * 60 * 60));
+                        setMaxSpeed(currentSpeed);
                     }
                     setHasErrors(false);
                 }
@@ -33,7 +33,7 @@ export const useSpeedometer = () => {
 
     return {
         hasErrors,
-        maxSpeed,
+        maxSpeed: parseInt(maxSpeed / 1000 * 60 * 60),
         speed
     }
 }

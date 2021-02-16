@@ -1,17 +1,36 @@
 .Speedometer {
+    font-size: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: speed;
+}
+
+.Speed {
     position: relative;
     unicode-bidi:bidi-override;
     direction:rtl;
 }
 
-.Speedometer:first-letter {
+.Speed:first-letter {
     font-size: 30vw;
+    margin-left: -4vw;
+    letter-spacing: 2vw;
 }
 
-.Speedometer::before {
+.Speed:after {
     content: 'KM/H';
     position: absolute;
     top: 3vw;
-    right: -3vw;
+    right: 0;
     font-size: 5vw;
+}
+
+.MaxSpeed {
+    grid-area: max-speed;
+}
+
+.MaxSpeedLabel {
+    font-size: 5vw;
+    text-indent: 1vw;
 }

@@ -4,11 +4,17 @@ export const useSpeedometer = () => {
 
     const [speed, setSpeed] = useState('0.0');
     const [hasErrors, setHasErrors] = useState(false);
+    const [maxSpeed, setMaxSpeed] = useState(0);
 
     const success = (position) => {
-        if(position.coords.speed) {
+        const currentSpeed = position.coords.speed;
+
+        if (currentSpeed) {
             // speed is in meters per second
-            setSpeed((position.coords.speed / 1000 * 60 * 60).toFixed(1));
+            setSpeed((currentSpeed / 1000 * 60 * 60).toFixed(1));
+            if (maxSpeed < currentSpeed) {
+                setMaxSpeed(parseInt(currentSpeed / 1000 * 60 * 60));
+            }
             setHasErrors(false);
         }
     }
@@ -29,6 +35,7 @@ export const useSpeedometer = () => {
 
     return {
         hasErrors,
+        maxSpeed,
         speed
     }
 }

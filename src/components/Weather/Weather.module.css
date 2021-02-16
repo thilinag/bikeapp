@@ -1,0 +1,9 @@
+.Weather {
+    grid-area: weather;
+    text-align: right;
+}
+
+.Condition {
+    font-size: 5vw;
+    text-indent: 1vw;
+}

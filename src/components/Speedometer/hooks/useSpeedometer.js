@@ -10,10 +10,9 @@ export const useSpeedometer = () => {
         navigator.geolocation.watchPosition(
             position => {
                 const currentSpeed = position.coords.speed;
-
                 if (currentSpeed) {
                     // speed is in meters per second
-                    setSpeed((currentSpeed / 1000 * 60 * 60).toFixed(1));
+                    setSpeed(currentSpeed);
                     if (maxSpeed < currentSpeed) {
                         setMaxSpeed(currentSpeed);
                     }
@@ -27,13 +26,13 @@ export const useSpeedometer = () => {
             enableHighAccuracy: true,
             timeout: 20000,
             maximumAge: 1000,
-            distanceFilter: 1
+            distanceFilter: 5
         })
     }, [maxSpeed]);
 
     return {
         hasErrors,
-        maxSpeed: parseInt(maxSpeed / 1000 * 60 * 60),
-        speed
+        maxSpeed: parseInt(maxSpeed / (1000 * 60 * 60)),
+        speed: (speed / 1000 * 60 * 60).toFixed(1)
     }
 }

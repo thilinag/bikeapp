@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 
+const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+const LAT = process.env.REACT_APP_LAT;
+const LON = process.env.REACT_APP_LON;
+
 export const useWeather = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     const getWeatherData = () => {
-        fetch('https://api.openweathermap.org/data/2.5/weather?id=2078025&appid=79379dd3d5b45e86b5877a0228391bfd&units=metric', )
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&appid=${API_KEY}&exclude=minutely,hourly,daily,alerts&units=metric`, )
         .then(response => response.json())
         .then(jsonResponse => {
             setWeatherData(jsonResponse);
@@ -16,7 +20,7 @@ export const useWeather = () => {
     }, [])
 
     return {
-        condition: weatherData?.weather[0].description,
-        temp: weatherData?.main.feels_like
+        condition: weatherData?.current.weather[0].description,
+        temp: weatherData?.current.temp
     }
 }

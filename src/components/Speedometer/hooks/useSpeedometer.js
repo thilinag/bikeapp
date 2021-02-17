@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { msToKmh } from 'utils/msToKmh';
 
 export const useSpeedometer = () => {
 
@@ -10,10 +11,10 @@ export const useSpeedometer = () => {
         navigator.geolocation.watchPosition(
             position => {
                 const currentSpeed = position.coords.speed;
-                if (currentSpeed) {
+                if (currentSpeed && currentSpeed > 0.25) {
                     // speed is in meters per second
                     setSpeed(currentSpeed);
-                    if (maxSpeed < currentSpeed) {
+                    if (parseFloat(maxSpeed) < parseFloat(currentSpeed)) {
                         setMaxSpeed(currentSpeed);
                     }
                     setHasErrors(false);
@@ -25,14 +26,13 @@ export const useSpeedometer = () => {
             },{
             enableHighAccuracy: true,
             timeout: 20000,
-            maximumAge: 1000,
-            distanceFilter: 5
+            distanceFilter: 1
         })
     }, [maxSpeed]);
 
     return {
         hasErrors,
-        maxSpeed: parseInt(maxSpeed / (1000 * 60 * 60)),
-        speed: (speed / 1000 * 60 * 60).toFixed(1)
+        maxSpeed: parseInt(msToKmh(maxSpeed)),
+        speed: msToKmh(speed).toFixed(1)
     }
 }

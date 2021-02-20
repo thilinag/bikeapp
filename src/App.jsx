@@ -1,6 +1,7 @@
 import Clock from './components/Clock';
 import Speedometer from './components/Speedometer';
 import Weather from './components/Weather';
+import MiBand from './components/MiBand';
 import classes from './App.module.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Clock />
       <Speedometer />
       <Weather />
+      <MiBand />
     </div>
   );
 }

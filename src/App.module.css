@@ -1,9 +1,9 @@
 .App {
     display: grid;
     grid-template-areas:
-        "clock clock"
+        "clock weather"
         "speed speed"
-        "max-speed weather"
+        "max-speed heart-rate"
     ;
     grid-auto-rows: min-content auto;
     width: 100vw;

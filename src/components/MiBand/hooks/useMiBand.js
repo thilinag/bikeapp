@@ -11,7 +11,8 @@ export const useMiBand = () => {
 
     const connectToMiBand = () => {
         navigator.bluetooth.requestDevice({
-            filters: [{ services: [0xFEE0] }]
+            filters: [{ services: [0xFEE0] }],
+            optionalServices: ['0000180d-0000-1000-8000-00805f9b34fb']
         })
             .then(device => device.gatt.connect())
             .then(server => server.getPrimaryService('heart_rate'))

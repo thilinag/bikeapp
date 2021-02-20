@@ -1,0 +1,8 @@
+.MiBand {
+    grid-area: heart-rate;
+    text-align: right;
+}
+
+.HeartRateLabel {
+    font-size: 5vw;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { msToKmh } from 'utils/msToKmh';
 
 export const useSpeedometer = () => {
@@ -7,28 +7,37 @@ export const useSpeedometer = () => {
     const [hasErrors, setHasErrors] = useState(false);
     const [maxSpeed, setMaxSpeed] = useState(0);
 
+    let mounted = useRef(true);
+    let watchId = useRef(null);
+
+    const onEvent = event => {
+        if (mounted.current) {
+            setSpeed(event.coords.speed);
+        }
+    };
+
     useEffect(() => {
-        navigator.geolocation.watchPosition(
-            position => {
-                const currentSpeed = Math.round(position.coords.speed * 100) / 100;
-                if (currentSpeed && currentSpeed > 0.25) {
-                    // speed is in meters per second
-                    setSpeed(currentSpeed);
-                    if (parseFloat(maxSpeed) < parseFloat(currentSpeed)) {
-                        setMaxSpeed(currentSpeed);
-                    }
-                    setHasErrors(false);
-                }
-            },
-            error => { 
+        // navigator.geolocation.getCurrentPosition(onEvent);
+        watchId.current = navigator.geolocation.watchPosition(onEvent,error => { 
                 console.error(error);
                 setHasErrors(true);
             },{
             enableHighAccuracy: true,
             timeout: 20000,
             distanceFilter: 1
-        })
-    }, [maxSpeed]);
+        });
+
+        return () => {
+            mounted.current = false;
+            navigator.geolocation.clearWatch(watchId.current);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (parseFloat(maxSpeed) < parseFloat(speed)) {
+            setMaxSpeed(speed);
+        }
+    }, [maxSpeed, speed])
 
     return {
         hasErrors,

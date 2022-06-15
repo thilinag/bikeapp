@@ -1,0 +1,18 @@
+.notifications {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+.notifications[open] {
+    background: red;
+    color: white;
+}
+ 
+.notifications p {
+    margin: 0;
+    font-size: 14px;
+}

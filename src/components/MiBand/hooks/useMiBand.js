@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { parseHeartRate } from 'utils/parseHeartRate';
+import useAPIMessages from 'common/hooks/useAPIMessages';
 
 export const useMiBand = () => {
+    const { addMessage } = useAPIMessages();
     const [heartRate, setHeartRate] = useState(null);
 
     const handleCharacteristicValueChanged = event => {
@@ -22,8 +24,12 @@ export const useMiBand = () => {
                 characteristic.addEventListener('characteristicvaluechanged',
                     handleCharacteristicValueChanged);
                 console.log('Notifications started');
+                addMessage('MiBand: Notifications started');
             })
-            .catch(error => { console.error(error); });        
+            .catch(error => {
+                addMessage(`MiBand: ${error.message}`)
+                console.error(error); 
+            });        
     }
 
     return {

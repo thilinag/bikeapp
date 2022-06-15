@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-export const useApp = () => {
+import useAPIMessages from 'common/hooks/useAPIMessages';
+
+export const useWakeLock = () => {
+    const { addMessage } = useAPIMessages();
     const wakeLock = useRef(null);
 
     const requestWakeLock = useCallback(async() => {
         try {
             wakeLock.current = await navigator.wakeLock.request('screen');
-            console.log('wakelock active')
+            addMessage('Wakelock: active');
         } catch (err) {
-            console.error(err);
+            addMessage(`Wakelock: ${err.message}`);
         }
-    }, [])
+    }, [addMessage])
 
     const releaseWakeLock = useCallback(async() => {
         if(wakeLock.current) {

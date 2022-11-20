@@ -11,13 +11,16 @@ export const useSpeedometer = () => {
     let mounted = useRef(true);
     let watchId = useRef(null);
 
-    const onEvent = event => {
-        if (mounted.current) {
-            setSpeed(event.coords.speed);
-        }
-    };
+    
 
     useEffect(() => {
+        const onEvent = event => {
+            if (mounted.current) {
+                addMessage(event.coords.accuracy);
+                setSpeed(event.coords.speed);
+            }
+        };
+
         // navigator.geolocation.getCurrentPosition(onEvent);
         watchId.current = navigator.geolocation.watchPosition(onEvent, error => { 
                 console.error(error);

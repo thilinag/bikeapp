@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { msToKmh } from 'utils/msToKmh';
 import useAPIMessages from 'common/hooks/useAPIMessages';
 
+const ACCURACY_THRESHOLD = 20;
+
 export const useSpeedometer = () => {
     const { addMessage } = useAPIMessages();
     const [speed, setSpeed] = useState(0);
@@ -15,8 +17,8 @@ export const useSpeedometer = () => {
 
     useEffect(() => {
         const onEvent = event => {
-            if (mounted.current) {
-                addMessage(event.coords.accuracy);
+            addMessage(event.coords.accuracy);
+            if (mounted.current && event.coords.accuracy > ACCURACY_THRESHOLD) {
                 setSpeed(event.coords.speed);
             }
         };

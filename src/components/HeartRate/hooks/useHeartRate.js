@@ -21,8 +21,8 @@ export const useHeartRate = () => {
               0x0087, // garmin
             ],
           },
+          { services: ["heart_rate"] },
         ],
-        optionalServices: ["0000180d-0000-1000-8000-00805f9b34fb"],
       })
       .then((device) => device.gatt.connect())
       .then((server) => server.getPrimaryService("heart_rate"))
@@ -37,7 +37,7 @@ export const useHeartRate = () => {
         addMessage("MiBand: Notifications started");
       })
       .catch((error) => {
-        addMessage(`MiBand: ${error.message}`);
+        addMessage(`HeartRate: ${error.message}`);
         console.error(error);
       });
   };

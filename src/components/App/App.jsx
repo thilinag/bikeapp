@@ -1,13 +1,13 @@
-import Clock from 'components/Clock';
-import Speedometer from 'components/Speedometer';
-import Weather from 'components/Weather';
-import MiBand from 'components/MiBand';
-import WakeLock from 'components/WakeLock';
-import APIMessagesNotification from 'components/APIMessagesNotification';
+import Clock from "components/Clock";
+import Speedometer from "components/Speedometer";
+import Weather from "components/Weather";
+import HeartRate from "components/HeartRate";
+import WakeLock from "components/WakeLock";
+import APIMessagesNotification from "components/APIMessagesNotification";
 
-import APIErrorProvider from 'common/providers/APIMessageProvider';
+import APIErrorProvider from "common/providers/APIMessageProvider";
 
-import classes from './App.module.css';
+import classes from "./App.module.css";
 
 const App = () => {
   return (
@@ -18,10 +18,10 @@ const App = () => {
         <Clock />
         <Speedometer />
         <Weather />
-        <MiBand />
+        <HeartRate />
       </div>
     </APIErrorProvider>
   );
-}
+};
 
 export default App;
